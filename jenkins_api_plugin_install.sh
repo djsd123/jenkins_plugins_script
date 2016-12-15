@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-set -x
-
 # Source plugin Array
 . ./plugins.sh
 
 # Jenkins Host
 HOST=localhost:8080
-
 
 JENKINS_URL=pluginManager/installNecessaryPlugins
 

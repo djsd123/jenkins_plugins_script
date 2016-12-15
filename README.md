@@ -3,7 +3,7 @@ A script to install Jenkins plugins _WITHOUT_ having to specify dependencies
 
 _Only tested with Jenkins 2.x_
 
-The script installs plugins defined in the `plugins.sh`.  Format <PLUGIN_NAME@PLUGIN_VERSION>. Plugins defined but already installed will be checked that they match the specified version and ignored.
+The script installs plugins defined in the `plugins.sh`.  Format _PLUGIN_NAME@PLUGIN_VERSION_. Plugins defined but already installed will be checked that they match the specified version and ignored.
 You could also define a plugin like this `nodelabelparameter@latest` to ensure your plugin stays up to date.
 
 I'm making some assumptions here. Such as:
@@ -14,6 +14,26 @@ have the same name.
 
 You'll have to modify the script to work with your jenkins setup
 
+### Usage
+Update `plugins.sh` with the plugins you want installed.
+```
+PLUGINS=(
+  scm-sync-configuration@0.0.10
+  nodelabelparameter@latest
+  golang@1.1
+  pyenv@0.0.7
+)
+```
+Run `jenkins_api_plugin_install.sh`
+```
+vagrant@trusty1:~$ ./jenkins_api_plugin_install.sh 
+Dec 15, 2016 4:24:10 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
+INFO: Downloading pyenv plugin
+Dec 15, 2016 4:24:24 PM hudson.PluginManager dynamicLoad
+INFO: Plugin pyenv:0.0.7 dynamically installed
+Dec 15, 2016 4:24:24 PM hudson.model.UpdateCenter$DownloadJob run
+INFO: Installation successful: pyenv plugin
+```
 #### Getting an api user token for another
 
 By default, in newer versions of Jenkins you will be unable to view another
