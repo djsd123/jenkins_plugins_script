@@ -2,6 +2,9 @@
 
 set -x
 
+# Source plugin Array
+. ./plugins.sh
+
 # Jenkins Host
 HOST=localhost:8080
 
@@ -22,7 +25,6 @@ PLUGINS=( powershell@1.3 msbuild@1.26 nant@1.4.3 )
 
 
 #Install plugins
-for i in "${PLUGINS[@]}"; do 
+for i in "${PLUGINS[@]}"; do
   curl -XPOST 'http://'"${API_USERNAME}"':'"${API_TOKEN}"'@'"${HOST}"'/'"${JENKINS_URL}"'' -d '<jenkins><install plugin="'"${i}"'" /></jenkins>' -H ''"${CSRF_CRUMB_HEADER}"''
 done
-
