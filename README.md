@@ -9,8 +9,8 @@ You could also define a plugin like this `nodelabelparameter@latest` to ensure y
 I'm making some assumptions here. Such as:
 
 * You're using a unix derived OS or bash like shell
-* An administrative jenkins user account and the local user you're running the script with 
-have the same name.
+* An administrative jenkins user account and the local user you're running the script with have the same name.
+* The administrative jenkins user account's username and password are the same string. (Please secure when it comes to real world use)
 
 You'll have to modify the script to work with your jenkins setup
 
