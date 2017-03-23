@@ -43,7 +43,11 @@ for i in "${PLUGINS[@]}"; do
 done
 
 if [[ $? -eq 22 ]]; then
-  echo "Failed to authenticate.  Possibly a bad password?"
+  printf "\nFailed to authenticate.  Possibly a bad password?\n"
   exit 1
+else
+  printf "\n SUCCESS \n"
+
 fi
+
 
