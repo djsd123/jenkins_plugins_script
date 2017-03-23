@@ -3,7 +3,7 @@ A script to install Jenkins plugins _WITHOUT_ having to specify dependencies
 
 _Only tested with Jenkins 2.x_
 
-The script installs plugins defined in the `plugins.sh`.  Format _PLUGIN_NAME@PLUGIN_VERSION_. Plugins defined but already installed will be checked that they match the specified version and ignored.
+The script installs plugins defined in the `plugins.sh`.  Format _PLUGIN_NAME@PLUGIN_VERSION_. Plugins that are defined but already installed will be checked that they match the specified version and actioned accordingly.
 You could also define a plugin like this `nodelabelparameter@latest` to ensure your plugin stays up to date.
 
 I'm making some assumptions here. Such as:
@@ -26,14 +26,22 @@ PLUGINS=(
 ```
 Run `jenkins_api_plugin_install.sh`
 ```
-vagrant@trusty1:~$ ./jenkins_api_plugin_install.sh 
+vagrant@trusty1:~/jenkins_plugins_script$ ./jenkins_api_plugin_install.sh 
+password:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 18542  100 18542    0     0   148k      0 --:--:-- --:--:-- --:--:--  149k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    46  100    46    0     0   3935      0 --:--:-- --:--:-- --:--:--  4181
+```
+
+To allow nicer output on failure, I had to surpress the plugin install output i.e. 
+```
 Dec 15, 2016 4:24:10 PM hudson.model.UpdateCenter$UpdateCenterConfiguration download
 INFO: Downloading pyenv plugin
-Dec 15, 2016 4:24:24 PM hudson.PluginManager dynamicLoad
-INFO: Plugin pyenv:0.0.7 dynamically installed
-Dec 15, 2016 4:24:24 PM hudson.model.UpdateCenter$DownloadJob run
-INFO: Installation successful: pyenv plugin
 ```
+
+You can revert supressed output by removing the `curl` flags `--fail` & `--silent`.  However, the `0` exit status evaluation has been enough to indicate success in my experience.  Please note that bash does not evaluate http errors very well, so I advise not removing the error handling unless you have something better.
 #### Getting an api user token for another
 
 By default, in newer versions of Jenkins you will be unable to view another
